@@ -1,0 +1,23 @@
+option('compiler_rt_build_builtins', type: 'boolean', value: true)
+option('compiler_rt_baremetal_build', type: 'boolean', value: true)
+option('compiler_rt_build_crt', type: 'boolean', value: false)
+option('compiler_rt_build_gwp_asan', type: 'boolean', value: false)
+option('compiler_rt_build_libfuzzer', type: 'boolean', value: false)
+option('compiler_rt_build_memprof', type: 'boolean', value: false)
+option('compiler_rt_build_orc', type: 'boolean', value: false)
+option('compiler_rt_build_profile', type: 'boolean', value: false)
+option('compiler_rt_build_sanitizers', type: 'boolean', value: false)
+option('compiler_rt_build_standalone_libatomic', type: 'boolean', value: false)
+option('compiler_rt_build_xray', type: 'boolean', value: false)
+option('compiler_rt_build_xray_no_preinit', type: 'boolean', value: false)
+option('compiler_rt_builtins_enable_pic', type: 'boolean', value: false)
+option('compiler_rt_builtins_enable_pic', type: 'boolean', value: false)
+option('compiler_rt_builtins_hide_symbols', type: 'boolean', value: false)
+option('compiler_rt_crt_use_eh_frame_registry', type: 'boolean', value: false)
+option('compiler_rt_enable_cet', type: 'boolean', value: false)
+option('compiler_rt_exclude_atomic_builtin', type: 'boolean', value: false)
+option('compiler_rt_sanitizers_to_build', type: 'array', choices:
+  ['asan','dfsan','msan','hwasan','tsan',
+    'safestack','cfi','scudo','ubsan_minimal','gwp_asan','all'],
+  value: ['all'])
+
