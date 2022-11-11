@@ -61,33 +61,28 @@ c_rt_exclude_atomic_builtin = get_option('compiler_rt_exclude_atomic_builtin')
 c_rt_sanitizers_to_build = get_option('compiler_rt_sanitizers_to_build')
 
 if c_rt_build_builtins
+  subdir('lib/builtin')
   c_rt_builtins_proj = subproject('builtins')
   c_rt_builtins_dep = c_rt_builtins_proj.get_value('c_rt_builtins_dep')
 endif
 
 # rest of these aren't yet supported, but ready for later time..
 if c_rt_build_crt
-  c_rt_crt_proj = subproject('crt')
-  c_rt_crt_dep = c_rt_crt_proj.get_value('c_rt_crt_dep')
+  subdir('lib/crt')
 endif
 
 if c_rt_build_sanitizers or c_rt_build_xray or c_rt_build_memprof
-  c_rt_sanitizer_common_proj = subproject('sanitizer_common')
-  c_rt_sanitizer_common_dep = c_rt_sanitizer_common_proj.get_value('c_rt_sanitizer_common_dep')
+  subdir('lib/sanitizer_common')
 endif
 
 if c_rt_build_sanitizers or c_rt_build_memprof
-  c_rt_interception_proj = subproject('interception')
-  c_rt
+  subdir('lib/interception')
 endif
 
 if c_rt_build_sanitizers
-  c_rt_stats_proj = subproject('stats')
-  c_rt_stats_dep = c_rt_stats_proj.get_value('c_rt_stats_dep')
-  c_rt_lsan_proj = subproject('lsan')
-  c_rt_lsan_dep = c_rt_lsan_proj.get_value('c_rt_lsan_dep')
-  c_rt_ubsan_proj = subproject('ubsan')
-  c_rt_ubsan_dep = c_rt_ubsan_proj.get_value('c_rt_ubsan_dep')
+  subdir('lib/stats')
+  subdir('lib/lsan')
+  subdir('lib/ubsan')
 
   c_rt_all_sanitizers = ['asan','dfsan','msan','hwasan','tsan',
       'safestack','cfi','scudo','ubsan_minimal','gwp_asan']
@@ -98,35 +93,25 @@ if c_rt_build_sanitizers
 
   foreach s : c_rt_sanitizers_to_build
     if s == 'asan'
-      c_rt_sanitizer_asan_proj = subproject('asan')
-      c_rt_sanitizer_asan_dep = c_rt_sanitizer_asan_proj.get_value('c_rt_sanitizer_asan_dep')
+      subdir('lib/asan')
     elif s = 'dfsan'
-      c_rt_sanitizer_dfsan_proj = subproject('dfsan')
-      c_rt_sanitizer_dfsan_dep = c_rt_sanitizer_dfsan_proj.get_value('c_rt_sanitizer_dfsan_dep')
+      subdir('lib/dfsan')
     elif s = 'msan'
-      c_rt_sanitizer_msan_proj = subproject('msan')
-      c_rt_sanitizer_msan_dep = c_rt_sanitizer_msan_proj.get_value('c_rt_sanitizer_msan_dep')
+      subdir('lib/msan')
     elif s = 'hwasan'
-      c_rt_sanitizer_hwasan_proj = subproject('hwasan')
-      c_rt_sanitizer_hwasan_dep = c_rt_sanitizer_hwasan_proj.get_value('c_rt_sanitizer_hwasan_dep')
+      subdir('lib/hwasan')
     elif s = 'tsan'
-      c_rt_sanitizer_tsan_proj = subproject('tsan')
-      c_rt_sanitizer_tsan_dep = c_rt_sanitizer_tsan_proj.get_value('c_rt_sanitizer_tsan_dep')
+      subdir('lib/tsan')
     elif s = 'safestack'
-      c_rt_sanitizer_safestack_proj = subproject('safestack')
-      c_rt_sanitizer_safestack_dep = c_rt_sanitizer_safestack_proj.get_value('c_rt_sanitizer_safestack_dep')
+      subdir('lib/safestack')
     elif s = 'cfi'
-      c_rt_sanitizer_cfi_proj = subproject('cfi')
-      c_rt_sanitizer_cfi_dep = c_rt_sanitizer_cfi_proj.get_value('c_rt_sanitizer_cfi_dep')
+      subdir('lib/cfi')
     elif s = 'scudo'
-      c_rt_sanitizer_scudo_proj = subproject('scudo')
-      c_rt_sanitizer_scudo_dep = c_rt_sanitizer_scudo_proj.get_value('c_rt_sanitizer_scudo_dep')
+      subdir('lib/scudo')
     elif s = 'ubsan_minimal'
-      c_rt_sanitizer_ubsan_minimal_proj = subproject('ubsan_minimal')
-      c_rt_sanitizer_ubsan_minimal_dep = c_rt_sanitizer_ubsan_minimal_proj.get_value('c_rt_sanitizer_ubsan_minimal_dep')
+      subdir('lib/ubsan_minimal')
     elif s = 'gwp_asan'
-      c_rt_sanitizer_gwp_asan_proj = subproject('gwp_asan')
-      c_rt_sanitizer_gwp_asan_dep = c_rt_sanitizer_gwp_asan_proj.get_value('c_rt_sanitizer_gwp_asan_dep')
+      subdir('lib/gwp_asan')
     else
       message('Sanitizer not found: ', s, ', skipping.')
     endif
@@ -135,26 +120,21 @@ endif
 
 
 if c_rt_build_profile
-  c_rt_profile_proj = subproject('profile')
-  c_rt_profile_dep = c_rt_profile_proj.get_value('c_rt_profile_dep')
+  subdir('lib/profile')
 endif
 
 if c_rt_build_xray
-  c_rt_xray_proj = subproject('xray')
-  c_rt_xray_dep = c_rt_xray_proj.get_value('c_rt_xray_dep')
+  subdir('lib/xray')
 endif
 
 if c_rt_build_libfuzzer
-  c_rt_fuzzer_proj = subproject('fuzzer')
-  c_rt_fuzzer_dep = c_rt_fuzzer_proj.get_value('c_rt_fuzzer_dep')
+  subdir('lib/fuzzer')
 endif
 
 if c_rt_build_memprof
-  c_rt_memprof_proj = subproject('memprof')
-  c_rt_memprof_dep = c_rt_memprof_proj.get_value('c_rt_memprof_dep')
+  subdir('lib/memprof')
 endif
 
 if c_rt_build_orc
-  c_rt_orc_proj = subproject('orc')
-  c_rt_orc_dep = c_rt_orc_proj.get_value('c_rt_orc_dep')
+  subdir('lib/orc')
 endif
