@@ -251,4 +251,35 @@ builtins_x86_80bit_src = files([
   'powixf2.c',
   ])
 
+builtins_x86_64_non_msvc_src = files([
+  'x86_64/floatdidf.c',
+  'x86_64/floatdisf.c',
+  'x86_64/floatundidf.S',
+  'x86_64/floatundisf.S',
+  ])
+
+builtins_x86_64_non_android_src = files([
+  'x86_64/floatdixf.c',
+  'x86_64/floatundixf.S',
+  ])
+
+builtins_x86_64_win32_src = files([
+  'x86_64/chkstk.S',
+  'x86_64/chkstk2.S',
+  ])
+
+builtins_i386_src = files([
+    'i386/ashldi3.S',
+    'i386/ashrdi3.S',
+    'i386/divdi3.S',
+    'i386/floatdidf.S',
+    'i386/floatdisf.S',
+    'i386/floatundidf.S',
+    'i386/floatundisf.S',
+    'i386/lshrdi3.S',
+    'i386/moddi3.S',
+    'i386/muldi3.S',
+    'i386/udivdi3.S',
+    'i386/umoddi3.S',
+  ])
 
